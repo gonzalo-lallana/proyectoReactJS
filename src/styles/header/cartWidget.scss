@@ -1,0 +1,33 @@
+
+.carrito {
+    width: fit-content;
+    height: fit-content;
+    margin-right: 20px;
+    border: 0;
+    position: relative;
+    background-color: rgb(181, 181, 123);
+    margin-right: 15px;
+    transition: 0.5s;
+    a{
+        img {width: 40px;
+            height: 40px;
+            }
+    }
+    .contadorCarrito {
+        background-color: yellow;
+        width: 17px;
+        height: 17px;
+        border-radius: 50%;
+        font-size: 17px;
+        font-weight: bold;
+        position: absolute;
+        bottom: 4px;
+        right: -5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &:hover {
+        transform: scale(1.2);
+    }
+}
