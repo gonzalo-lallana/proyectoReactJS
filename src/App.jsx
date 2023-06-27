@@ -1,13 +1,28 @@
+
+
 import Header from './components/header/header'
-import ItemListContainer from './components/itemListContainer/itemListContainer'
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Footer from './components/footer/footer'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/styles.scss'
+import ItemListContainer from './components/itemListContainer/itemListContainer'
+import ItemDetailContainer from './components/itemDetailContainer/itemDetailContainer'
+
 function App() {
 
   return (
-    <div>
-      <Header/>
-      <ItemListContainer greeting= "Somos la tienda para todo aquel amante del boxeo, aqui encontraras los mejores productos de las mejores marcas tanto para entrenar o para la hora de un combate amateur o profesional."/>
-    </div>
+      <BrowserRouter>
+        <Header/>
+        <Routes>
+          <Route path='/' element={
+            <ItemListContainer />
+          } />
+          <Route path='/productos/:categoryId' 
+          element= {<ItemListContainer></ItemListContainer>}/>
+          <Route path='/detail/:itemId' element={<ItemDetailContainer></ItemDetailContainer>}/>
+        </Routes>
+        <Footer/>
+      </BrowserRouter>
   )
 }
 
