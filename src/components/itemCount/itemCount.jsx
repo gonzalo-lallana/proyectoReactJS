@@ -8,16 +8,11 @@ const ItemCount = ({max, cantidad, setCantidad, handleAgregar}) => {
     }
     return ( 
         <div>
-            <button onClick={handleRestar} className="btn btn-primary">
-                -
-                <span className="mx-3">{cantidad}</span>
-            </button>
+            <button onClick={handleRestar} className="btn btn-outline-danger">-</button>
+            <span className="mx-3">{cantidad}</span>
+            <button onClick={handleSumar} className="btn btn-outline-primary">+</button>
             <br />
-            <button onClick={handleSumar} className="btn btn-succes">
-                +
-                <span className="mx-3">{cantidad}</span>
-            </button>
-            <button onClick={handleAgregar} className="btn btn-outline-primary my-2">Agregar al Carrito</button>
+            <button onClick={handleAgregar} className="btn btn-success my-2">Agregar al Carrito</button>
         </div>
     );
 }

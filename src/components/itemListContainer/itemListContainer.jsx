@@ -33,8 +33,8 @@ const ItemListContainer = () => {
     }, [categoryId])
 
     const listado = search
-                        ? productos.filter(prod => prod.nombre.includes(search))
-                        : productos
+        ? productos.filter(prod => prod.nombre.includes(search))
+        : productos
 
     return ( 
         <div>
