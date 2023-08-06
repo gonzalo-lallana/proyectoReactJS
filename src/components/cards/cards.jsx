@@ -9,8 +9,8 @@ const Cards = ({id, nombre, descripcion, precio, img, categoria, stock}) => {
     return ( 
         <Row className="col-6 col-md-4 my-4">
             <Col>
-                <Card id="Cards" style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={img} />
+                <Card id="Cards" style={{width: '20rem' }}>
+                    <Card.Img variant="top" src={img} style={{height: '22rem'}}/>
                     <Card.Body>
                         <Card.Title>{nombre}</Card.Title>
                         <Card.Text>{descripcion}</Card.Text>

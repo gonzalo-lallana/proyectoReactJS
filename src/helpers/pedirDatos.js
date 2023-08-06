@@ -1,9 +1,9 @@
-import MOCK_DATA from "../data/MOCK_DATA.json"
+import '../firebase/config'
 
 export const pedirDatos = () => {
     return new Promise((resolve, reject)=> {
         setTimeout(() => {
-            resolve(MOCK_DATA)
+            resolve(app)
         }, 1000)
     }) 
 } 

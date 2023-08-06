@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 import ProductContainer from '../productContainer/productContainer';
 import CarouselContainer from '../carouselContainer/CarouselContainer';
 import { useParams, useSearchParams } from 'react-router-dom';
-
+import { dataBase } from '../../firebase/config';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 
 const ItemListContainer = () => {
 
@@ -13,23 +14,25 @@ const ItemListContainer = () => {
     const [loading, setLoading] = useState(true)
     const [searchParams] = useSearchParams()
     const search = searchParams.get("search")
+    console.log(productos)
     const { categoryId } = useParams()
 
     useEffect(() => {
         setLoading(true)
 
-        pedirDatos()
-            .then((res) => {
-                if (!categoryId) {
-                    setProductos(res)
-                } else {
-                    setProductos( res.filter((item) => item.categoria === categoryId))
-                }
+        const productosRef = collection(dataBase, "productos")
+        const q = categoryId
+            ? query(productosRef, where('categoria', '==', categoryId))
+            : productosRef
+
+        getDocs(q)
+            .then((resp) => {
+                const items = resp.docs.map((doc) => ({...doc.data(), id: doc.id}))
+                setProductos(items)
             })
-            .catch((err) => {
-                console.log(err)
-            })
-            .finally(() => setLoading(false))
+            .catch((e) => console.log(e))
+            .finally(()=> setLoading(false))
+            
     }, [categoryId])
 
     const listado = search
@@ -39,6 +42,7 @@ const ItemListContainer = () => {
     return ( 
         <div>
             {
+
                 loading
                     ? <h2>Cargando...</h2>
                     : <div>
